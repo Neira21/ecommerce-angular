@@ -1,0 +1,13 @@
+<p>Lista de Productos!</p>
+
+<div>
+  <ul>
+    @for( product of productList; track product.id ) {
+      <li>
+        <a>
+          {{ product.title }} - {{ product.price }}
+        </a>
+      </li>
+    }
+  </ul>
+</div>
