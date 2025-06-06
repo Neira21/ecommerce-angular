@@ -20,8 +20,15 @@ export class ProductsService {
           description:
             product.description.charAt(0).toUpperCase() +
             product.description.slice(1).toLowerCase(),
+          inCart: false,
         }))
       )
     );
   }
+
+  getProductById(id:number){
+    return this.http.get('https://fakestoreapi.com/products' + '/' + id)
+  }
+
+
 }
