@@ -15,7 +15,6 @@ export default class ProductDetailComponent {
   //obtener product desde los parametros de la ruta con ActivatedRoute
 
   private readonly _activeRouter = inject(ActivatedRoute);
-  private readonly _productId = Number(this._activeRouter.snapshot.paramMap.get('id'));
   private readonly _productService = inject(ProductsService);
 
   productDetail: Product | undefined;
@@ -34,7 +33,8 @@ export default class ProductDetailComponent {
 
 
   ngOnInit(): void {
-    this._getProductById(this._productId);
+    const id = Number(this._activeRouter.snapshot.paramMap.get('id'));
+    this._getProductById(id);
   }
 
 }

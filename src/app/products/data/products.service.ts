@@ -26,8 +26,8 @@ export class ProductsService {
     );
   }
 
-  getProductById(id:number){
-    return this.http.get('https://fakestoreapi.com/products' + '/' + id)
+  getProductById(id:number):Observable<Product> {
+    return this.http.get<Product>('https://fakestoreapi.com/products' + '/' + id)
   }
 
 

@@ -11,3 +11,9 @@ export interface Product {
     count: number;
   };
 }
+
+
+export interface ProductInCart{
+  product: Product; // The product details
+  quantity?: number; // Optional, used to track quantity in cart
+}

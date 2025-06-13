@@ -1,1 +1,14 @@
-<p>cart-detail works!</p>
+@if (cart.length === 0) {
+  <p>El carrito está vacío 🛒</p>
+} @else {
+  @for (item of cart; track item.product) {
+    <div class="p-2 border-b">
+      <p class="font-semibold">{{ item.product.title }}</p>
+      <p>Cantidad: {{ item.quantity }}</p>
+      <p>Precio: ${{ item.product.price }}</p>
+    </div>
+  }
+}
+
+
+{{cart.length}} productos en el carrito

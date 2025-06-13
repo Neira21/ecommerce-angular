@@ -7,7 +7,7 @@
     @for( product of productList; track product.id ) {
 
     <div
-      class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700"
+      class="w-full max-w-sm border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700"
     >
       <div
         class="cursor-pointer w-full h-48 overflow-auto flex items-center justify-center bg-white rounded-t-lg"
@@ -59,12 +59,17 @@
             >{{ product.rating.rate }}</span
           >
         </div>
-        <div class="flex items-center justify-between">
-          <span class="text-3xl font-bold text-gray-900 dark:text-white"
-            >${{ product.price }}</span
+        <div
+          class="flex items-center justify-between rounded-lg gap-x-3 w-full h-10 px-2"
+        >
+          <p
+            class="text-2xl font-bold text-gray-900 dark:text-white whitespace-nowrap flex-shrink-0"
           >
+            ${{ product.price }}
+          </p>
           <button
-            class="cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class="whitespace-nowrap max-h-10 cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            (click)="addToCart(product)"
           >
             Add to cart
           </button>
