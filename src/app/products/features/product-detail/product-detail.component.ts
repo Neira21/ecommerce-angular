@@ -1,40 +1,30 @@
 import { Product } from './../../../shared/interfaces/product.interface';
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, effect, inject, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsService } from '../../data/products.service';
+import { ProductDetailStateService } from '../../data/product-detail-state.service';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
   imports: [],
   templateUrl: './product-detail.component.html',
-  styles: ``
+  styles: ``,
+  providers: [ProductDetailStateService]
 })
 export default class ProductDetailComponent {
 
   //obtener product desde los parametros de la ruta con ActivatedRoute
 
   private readonly _activeRouter = inject(ActivatedRoute);
-  private readonly _productService = inject(ProductsService);
+  productdetailstate = inject(ProductDetailStateService).state;
 
-  productDetail: Product | undefined;
+  roundRating(rating: number | undefined | null): number {
+  return Math.floor(rating ?? 0);
+}
 
-  private _getProductById(id:number){
-    this._productService.getProductById(id).subscribe({
-      next: (data) => {
-        console.log('Product fetched successfully:', data);
-        this.productDetail = data as Product;
-      },
-      error: (err) => {
-        console.error('Error fetching product:', err);
-      }
-    })
-  }
-
-
-  ngOnInit(): void {
-    const id = Number(this._activeRouter.snapshot.paramMap.get('id'));
-    this._getProductById(id);
+  constructor() {
+      const id = this._activeRouter.snapshot.paramMap.get('id');
+      if (id) this.productdetailstate.getById(id);
   }
 
 }

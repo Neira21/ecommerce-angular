@@ -15,5 +15,5 @@ export interface Product {
 
 export interface ProductInCart{
   product: Product; // The product details
-  quantity?: number; // Optional, used to track quantity in cart
+  quantity: number; // Optional, used to track quantity in cart
 }

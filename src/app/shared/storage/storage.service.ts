@@ -1,34 +1,18 @@
 import { Injectable } from "@angular/core";
 import { ProductInCart } from "../interfaces/product.interface";
+import { Observable, of } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
-  private storage: Storage;
 
-  constructor() {
-    this.storage = localStorage;
+  loadProducts(): Observable<ProductInCart[]> {
+    const rawProducts = localStorage.getItem("cart");
+    return of(rawProducts ? JSON.parse(rawProducts) : []);
   }
 
-  saveCart(cartItems: ProductInCart[]): void {
-    console.log("Saving cart items to local storage:", cartItems);
-    this.storage.setItem("cart", JSON.stringify(cartItems));
+  saveCart(cart: ProductInCart[]): void {
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
-
-  getCart(): ProductInCart[] {
-    const cart = this.storage.getItem("cart");
-    return cart ? JSON.parse(cart) : [];
-  }
-
-  clearCart(): void {
-    this.storage.removeItem("cart");
-  }
-
-  updateCart(cartItems: ProductInCart[]) {
-    this.saveCart(cartItems);
-  }
-
-
-
 }

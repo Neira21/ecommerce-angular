@@ -26,7 +26,7 @@ export class ProductsService {
     );
   }
 
-  getProductById(id:number):Observable<Product> {
+  getProductById(id:string):Observable<Product> {
     return this.http.get<Product>('https://fakestoreapi.com/products' + '/' + id)
   }
 

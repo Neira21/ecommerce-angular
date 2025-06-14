@@ -1,37 +1,31 @@
-import { Component, inject } from '@angular/core';
-import { ProductsService } from '../../data/products.service';
+import { CartStateService } from './../../../cart/data/cart-state.service';
+import { Component, inject, output } from '@angular/core';
 import { Product } from '../../../shared/interfaces/product.interface';
 import { RouterLink } from '@angular/router';
-import { CartService } from '../../../cart/data/cart.service';
+import { ProductStateService } from '../../data/product-state.service';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
   imports: [RouterLink],
   templateUrl: './product-list.component.html',
-  styles: ``
+  styles: ``,
+  providers: [ProductStateService, CartStateService]
 })
 export default class ProductListComponent {
 
-  private readonly _productsService = inject(ProductsService);
-  private readonly _cartService= inject(CartService); // Assuming you meant to inject CartService here
+  productsState = inject(ProductStateService);
+  cartState = inject(CartStateService).state;
 
-  productList: Product[] = [];
 
-  ngOnInit(): void {
-    this._productsService.getProducts().subscribe({
-      next: (data) => {
-        this.productList = data;
-      },
-      error: (err) => {
-        console.error('Error fetching products:', err);
-      }
-    });
+  addToCard = output<Product>();
+
+  add(product:Product) {
+
+    this.cartState.add({
+      product,
+      quantity: 1}
+    );
   }
-
-  addToCart(product: Product): void {
-    this._cartService.addToCart(product);
-  }
-
 
 }
