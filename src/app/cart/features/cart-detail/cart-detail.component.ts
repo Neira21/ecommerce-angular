@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { ProductInCart } from '../../../shared/interfaces/product.interface';
 import { StorageService } from '../../../shared/storage/storage.service';
 import { CommonModule } from '@angular/common';
+import { CartStateService } from '../../data/cart-state.service';
 
 @Component({
   selector: 'app-cart-detail',
@@ -13,9 +14,24 @@ import { CommonModule } from '@angular/common';
 })
 export default class CartDetailComponent {
 
-  cart: ProductInCart[] = [];
+  state = inject(CartStateService).state;
 
-  ngOnInit(): void {
-
+  get stateCart() {
+    return this.state(); // ✅ Esto es reactivo
   }
+
+  eliminarDelCarrito(producto: ProductInCart) {
+    this.state.remove(producto); // Triggerea la acción
+  }
+
+  incrementarCantidad(producto: ProductInCart) {
+    this.state.increment(producto);
+  }
+
+  decrementarCantidad(producto: ProductInCart) {
+    this.state.decrement(producto);
+  }
+
+
+
 }

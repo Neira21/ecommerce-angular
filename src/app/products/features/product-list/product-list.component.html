@@ -7,7 +7,7 @@
   <div
     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
   >
-    @for( product of productsState.state.products(); track product ) {
+@for (product of productsState.state().products; track product) {
 
     <div
       class="w-full max-w-sm border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700"
@@ -71,7 +71,7 @@
             ${{ product.price }}
           </p>
           <button
-            class="whitespace-nowrap max-h-10 cursor-pointer text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class="whitespace-nowrap max-h-10 cursor-pointer text-white bg-blue-700 hover:bg-blue-800"
             (click)="add(product)"
           >
             Add to cart
