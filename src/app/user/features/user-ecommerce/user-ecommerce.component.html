@@ -1,1 +1,10 @@
-<p>user-ecommerce works!</p>
+<h2>Login</h2>
+    <form (ngSubmit)="login()">
+      <input [(ngModel)]="email" name="email" placeholder="Email" required />
+      <input [(ngModel)]="password" name="password" type="password" placeholder="password" required />
+      <button type="submit">Entrar</button>
+
+      @if(error) {
+        <p class="error">{{ error }}</p>
+      }
+    </form>
