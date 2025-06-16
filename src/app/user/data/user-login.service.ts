@@ -12,6 +12,7 @@ export class UserLoginService {
   login(token: string) {
     localStorage.setItem('token', token);
     this.token.set(token);
+
   }
 
   logout() {

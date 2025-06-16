@@ -11,18 +11,24 @@ import { Router } from '@angular/router';
   styles: ``,
 })
 export default class UserEcommerceComponent {
-  email = '';
-  password = '';
-  error = '';
+  email:string = '';
+  username:string ='alvaro';
+  password:string = '';
+  error:string = '';
 
-  router = inject(Router);
+  private router = inject(Router);
 
-  login() {
-    if (this.email === 'admin@example.com' && this.password === '1234') {
+  login(event: Event) {
+    event.preventDefault(); // Evita el envío del formulario
+    if (this.email === 'admin@admin.com' && this.password === '1234') {
       localStorage.setItem('token', 'mock-token');
-      this.router.navigateByUrl('/products');
+      console.log('Inicio de sesión exitoso');
+      this.router.navigate(['/products']);
     } else {
+      console.log('Credenciales inválidas');
       this.error = 'Credenciales inválidas';
+
     }
   }
+
 }

@@ -20,6 +20,7 @@
     <div class="w-full flex justify-end " id="navbar-default">
       <ul
         class="font-medium flex p-4 "
+        *ngIf="isLoggedIn"
       >
         <li>
           <a
@@ -35,6 +36,13 @@
             routerLink="/cart"
             class="block py-2 px-3 hover:dark:text-blue-500 "
             >Carrito</a
+          >
+        </li>
+        <li>
+          <a
+            (click)="logout()"
+            class="block py-2 px-3 hover:dark:text-blue-500 cursor-pointer"
+            >Cerrar sesión</a
           >
         </li>
       </ul>
