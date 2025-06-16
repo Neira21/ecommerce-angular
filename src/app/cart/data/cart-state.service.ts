@@ -87,23 +87,30 @@ export class CartStateService {
   }
 
   private increment(state: Signal<State>, productInCart: ProductInCart) {
-  const updatedProducts = state().products.map(p =>
-    p.product.id === productInCart.product.id
-      ? { ...p, quantity: p.quantity + 1 }
-      : p
-  );
-  return { products: updatedProducts };
-}
-
-private decrement(state: Signal<State>, productInCart: ProductInCart) {
-  const updatedProducts = state().products
-    .map(p =>
+    const updatedProducts = state().products.map((p) =>
       p.product.id === productInCart.product.id
-        ? { ...p, quantity: p.quantity - 1 }
+        ? { ...p, quantity: p.quantity + 1 }
         : p
-    )
-    .filter(p => p.quantity > 0); // Eliminar si la cantidad llega a 0
+    );
+    return { products: updatedProducts };
+  }
 
-  return { products: updatedProducts };
-}
+  private decrement(state: Signal<State>, productInCart: ProductInCart) {
+    const updatedProducts = state()
+      .products.map((p) =>
+        p.product.id === productInCart.product.id
+          ? { ...p, quantity: p.quantity - 1 }
+          : p
+      )
+      .filter((p) => p.quantity > 0); // Eliminar si la cantidad llega a 0
+
+    return { products: updatedProducts };
+  }
+
+  total = computed(() =>
+    this.state().products.reduce(
+      (acc, item) => acc + item.product.price * item.quantity,
+      0
+    )
+  );
 }

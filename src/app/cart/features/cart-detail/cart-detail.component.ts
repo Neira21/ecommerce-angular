@@ -16,6 +16,9 @@ export default class CartDetailComponent {
 
   state = inject(CartStateService).state;
 
+  total = inject(CartStateService).total;
+
+
   get stateCart() {
     return this.state(); // ✅ Esto es reactivo
   }

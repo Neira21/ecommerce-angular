@@ -10,7 +10,7 @@ import { ProductStateService } from '../../data/product-state.service';
   imports: [RouterLink],
   templateUrl: './product-list.component.html',
   styles: ``,
-  providers: [ProductStateService, CartStateService]
+  providers: [ProductStateService]
 })
 export default class ProductListComponent {
 
