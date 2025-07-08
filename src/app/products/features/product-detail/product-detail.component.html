@@ -10,15 +10,22 @@
   </div>
 } @else {
 <section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
-  <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
-    <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
-      <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
+  <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0 ">
+    <div class="lg:grid lg:grid-cols-3  lg:place-items-center">
+
+      <div class="shrink-0 max-w-md lg:max-w-lg mx-auto ">
         <img
           [src]="productdetailstate.product()?.image"
           class="rounded-t-lg object-contain w-[300px]"
           alt=""
         />
       </div>
+
+        <!-- Línea vertical -->
+      <div class="h-full w-px bg-gray-300 dark:bg-white"></div>
+
+
+
       <div class="mt-6 sm:mt-8 lg:mt-0">
         <h1
           class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"

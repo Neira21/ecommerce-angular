@@ -28,10 +28,13 @@ export class CartStateService {
   };
 
   loadProducts$ = this.storageService.loadProducts().pipe(
-    map((products) => ({
-      products,
-      loaded: true,
-    }))
+    map((products) => {
+      console.log("products", products);
+      return{
+        products,
+        loaded: true,
+      }
+    })
   );
 
   state = signalSlice({
@@ -46,6 +49,9 @@ export class CartStateService {
         action$.pipe(map((product) => this.increment(state, product))),
       decrement: (state, action$: Observable<ProductInCart>) =>
         action$.pipe(map((product) => this.decrement(state, product))),
+      clear: (state, action$: Observable<void>) =>
+        action$.pipe(map(() => this.clear(state))),
+
     },
   });
 
@@ -57,6 +63,12 @@ export class CartStateService {
         this.storageService.saveCart(currentState.products);
       }
     });
+  }
+
+  private clear(state: Signal<State>) {
+    return {
+      products: [],
+    };
   }
 
   private add(state: Signal<State>, productInCart: ProductInCart) {
@@ -106,6 +118,8 @@ export class CartStateService {
 
     return { products: updatedProducts };
   }
+
+
 
   total = computed(() =>
     this.state().products.reduce(

@@ -3,6 +3,8 @@ import { Component, inject, output } from '@angular/core';
 import { Product } from '../../../shared/interfaces/product.interface';
 import { RouterLink } from '@angular/router';
 import { ProductStateService } from '../../data/product-state.service';
+import Swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-product-list',
@@ -23,17 +25,52 @@ export default class ProductListComponent {
   addToCard = output<Product>();
 
   add(product:Product) {
-    this.cartState.add({
-      product,
-      quantity: 1}
-    );
 
-    this.mensaje = "Producto agregado al carrito";
+    Swal.fire({
+      title: "Desea agregar este producto al carrito?",
+      text: "producto: " + product.title,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, agregar!",
+      cancelButtonText: "Cancelar"
 
-    setTimeout(() => {
-      this.mensaje = "";
-    }, 3000);
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.cartState.add({
+          product,
+          quantity: 1}
+        );
+        Swal.fire({
+          title: "Agregado!",
+          text: "Revise su producto en el carrito",
+          icon: "success"
+        });
+      }else{
+        Swal.fire({
+          title: "Cancelado",
+          text: "No se agregó el producto al carrito",
+          icon: "error"
+        });
+      }
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
+
+
 
 
 
