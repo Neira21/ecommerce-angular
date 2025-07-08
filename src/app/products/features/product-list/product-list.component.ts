@@ -14,6 +14,8 @@ import { ProductStateService } from '../../data/product-state.service';
 })
 export default class ProductListComponent {
 
+  mensaje= "";
+
   productsState = inject(ProductStateService);
   cartState = inject(CartStateService).state;
 
@@ -21,11 +23,18 @@ export default class ProductListComponent {
   addToCard = output<Product>();
 
   add(product:Product) {
-
     this.cartState.add({
       product,
       quantity: 1}
     );
+
+    this.mensaje = "Producto agregado al carrito";
+
+    setTimeout(() => {
+      this.mensaje = "";
+    }, 3000);
   }
+
+
 
 }
