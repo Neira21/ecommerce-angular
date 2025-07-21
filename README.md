@@ -1,27 +1,32 @@
-# EcommerceAngular
+# 🛒 ecommerce-angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
+Este proyecto está hecho en **Angular 17** y usa al api de Fake Store.
+Permite a los usuarios navegar por productos, gestionar un carrito de compras y realizar acciones básicas de usuario como login y registro.
 
-## Development server
+## 👤 Autor
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+**Neira21**  
+[🔗 GitHub Profile](https://github.com/Neira21)
 
-## Code scaffolding
+## 🚀 Tecnologías utilizadas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 17
+- TypeScript
+- RxJS
+- Tailwind CSS
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## 🛠 Funcionalidades
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+🛒 Gestión del carrito de compras
 
-## Running end-to-end tests
+👤 Inicio de sesión de usuarios
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+🔐 Rutas protegidas por guards
 
-## Further help
+♻️ Componentes reutilizables
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+📝 Lista de productos
+
+Este proyecto está aún en desarrollo. Las futuras mejoras incluirán una gestión de usuarios completo.
