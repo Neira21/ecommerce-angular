@@ -25,6 +25,7 @@ export class ProductDetailStateService {
       getById: (_state, $: Observable<string>) => $.pipe(
         switchMap((id) => this.productService.getProductById(id)),
         map(data => ({product: data, status: 'success' as const})),
+        catchError(() => of({product: null, status: 'error' as const})),
       )
     }
   })

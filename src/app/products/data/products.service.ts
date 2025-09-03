@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../../shared/interfaces/product.interface';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +20,16 @@ export class ProductsService {
           description:
             product.description.charAt(0).toUpperCase() +
             product.description.slice(1).toLowerCase(),
-          inCart: false,
         }))
-      )
+      ),
+      tap((products) => console.log('Products loaded successfully', products))
     );
   }
 
   getProductById(id:string):Observable<Product> {
-    return this.http.get<Product>('https://fakestoreapi.com/products' + '/' + id)
+    return this.http.get<Product>('https://fakestoreapi.com/products' + '/' + id).pipe(
+      tap((product) => console.log('Product loaded successfully', product))
+    );
   }
 
 

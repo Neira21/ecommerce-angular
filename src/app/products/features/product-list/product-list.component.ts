@@ -1,15 +1,16 @@
 import { CartStateService } from './../../../cart/data/cart-state.service';
 import { Component, inject, output } from '@angular/core';
-import { Product } from '../../../shared/interfaces/product.interface';
+import { Product, ProductFilters } from '../../../shared/interfaces/product.interface';
 import { RouterLink } from '@angular/router';
 import { ProductStateService } from '../../data/product-state.service';
 import Swal from 'sweetalert2'
+import { ProductFilterComponent } from '../product-filter/product-filter.component';
 
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ProductFilterComponent],
   templateUrl: './product-list.component.html',
   styles: ``,
   providers: [ProductStateService]
@@ -21,8 +22,12 @@ export default class ProductListComponent {
   productsState = inject(ProductStateService);
   cartState = inject(CartStateService).state;
 
+  // Getter para obtener productos filtrados
+  get displayProducts() {
+    return this.productsState.state.filteredProducts();
+  }
 
-  addToCard = output<Product>();
+  //addToCard = output<Product>();
 
   add(product:Product) {
 

@@ -29,7 +29,7 @@ export class CartStateService {
 
   loadProducts$ = this.storageService.loadProducts().pipe(
     map((products) => {
-      console.log("products", products);
+      console.log('Products loaded from storage:', products);
       return{
         products,
         loaded: true,

@@ -1,9 +1,16 @@
+
+
+
 @switch(productsState.state.status()) { @case("loading") {
 <p class="text-center text-gray-500">Cargando productos...</p>
 } @case("error") {
 <p class="text-center text-red-500">ERROR</p>
 } @default{
 <section>
+
+  <div class="mb-6">
+    <app-product-filter></app-product-filter>
+  </div>
 
   @if(mensaje) {
   <p class="text-center text-green-500">{{mensaje}}</p>
@@ -12,7 +19,7 @@
   <div
     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
   >
-@for (product of productsState.state().products; track product) {
+@for (product of displayProducts; track product.id) {
 
     <div
       class="w-full max-w-sm border border-gray-200 rounded-lg shadow-sm  dark:border-gray-700 dark:bg-gray-700 flex flex-col justify-between gap-2"
